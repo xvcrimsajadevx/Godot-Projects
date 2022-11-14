@@ -18,6 +18,11 @@ config/name="Squash the Creeps (3D)"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=720
+window/size/height=540
+
 [input]
 
 move_left={
