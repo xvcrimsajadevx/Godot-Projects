@@ -12,12 +12,6 @@ public class Player : KinematicBody
 
     private Vector3 _velocity = Vector3.Zero;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        
-    }
-
     public override void _PhysicsProcess(float delta)
     {
         // Local variable to store the input direction
@@ -41,20 +35,18 @@ public class Player : KinematicBody
             direction.z -= 1f;
         }
 
-        // ...
-
         if (direction != Vector3.Zero)
         {
             direction = direction.Normalized();
             GetNode<Spatial>("Pivot").LookAt(Translation + direction, Vector3.Up);
         }
 
-        
+        // Ground velocity
+        _velocity.x = direction.x * Speed;
+        _velocity.z = direction.z * Speed;
+        // Vertical velocity
+        _velocity.y -= FallAcceleration * delta;
+        //Moving the character
+        _velocity = MoveAndSlide(_velocity, Vector3.Up);
     }
-
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }
