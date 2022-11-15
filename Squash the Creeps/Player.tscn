@@ -8,9 +8,11 @@ radius = 1.04487
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.515344, 0 )
+collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="Pivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.153988, 0 )
 
 [node name="Character" parent="Pivot" instance=ExtResource( 1 )]
 

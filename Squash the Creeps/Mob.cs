@@ -8,6 +8,10 @@ public class Mob : KinematicBody
     [Export]
     public int MaxSpeed = 18;
 
+    // Emmits when player jumps on mob
+    [Signal]
+    public delegate void Squashed();
+
     private Vector3 _velocity = Vector3.Zero;
 
     // Called when the node enters the scene tree for the first time.
@@ -34,6 +38,12 @@ public class Mob : KinematicBody
 
     public void OnVisibilityNotifierScreenExited()
     {
+        QueueFree();
+    }
+
+    public void Squash()
+    {
+        EmitSignal(nameof(Squashed));
         QueueFree();
     }
 }
