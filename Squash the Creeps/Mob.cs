@@ -3,14 +3,14 @@ using System;
 
 public class Mob : KinematicBody
 {
+    // Emmits when player jumps on mob
+    [Signal]
+    public delegate void Squashed();
+
     [Export]
     public int MinSpeed = 10;
     [Export]
     public int MaxSpeed = 18;
-
-    // Emmits when player jumps on mob
-    [Signal]
-    public delegate void Squashed();
 
     private Vector3 _velocity = Vector3.Zero;
 
@@ -26,7 +26,7 @@ public class Mob : KinematicBody
         // Position mob and turn it to look at player
         LookAtFromPosition(startPosition, playerPosition, Vector3.Up);
         // Rotate randomly so it doesn't move exactly towards the player
-        RotateY((float)GD.RandRange(-Mathf.Pi / 4.0, -Mathf.Pi / 4.0));
+        RotateY((float)GD.RandRange(-Mathf.Pi / 4.0, Mathf.Pi / 4.0));
 
         // Calculate random speed
         float randomSpeed = (float)GD.RandRange(MinSpeed, MaxSpeed);
@@ -36,14 +36,14 @@ public class Mob : KinematicBody
         _velocity = _velocity.Rotated(Vector3.Up, Rotation.y);
     }
 
-    public void OnVisibilityNotifierScreenExited()
-    {
-        QueueFree();
-    }
-
     public void Squash()
     {
         EmitSignal(nameof(Squashed));
+        QueueFree();
+    }
+
+    public void OnVisibilityNotifierScreenExited()
+    {
         QueueFree();
     }
 }

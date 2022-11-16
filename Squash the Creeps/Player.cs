@@ -3,6 +3,9 @@ using System;
 
 public class Player : KinematicBody
 {
+    [Signal]
+    public delegate void Hit();
+
     // How fast the player moves - meters/second
     [Export]
     public int Speed = 14;
@@ -50,8 +53,6 @@ public class Player : KinematicBody
         // Ground velocity
         _velocity.x = direction.x * Speed;
         _velocity.z = direction.z * Speed;
-        // Vertical velocity
-        _velocity.y -= FallAcceleration * delta;
 
         // Jumping
         if (IsOnFloor() && Input.IsActionJustPressed("jump"))
@@ -59,7 +60,9 @@ public class Player : KinematicBody
             _velocity.y += JumpImpulse;
         }
 
-        //Moving the character
+        // Vertical velocity
+        _velocity.y -= FallAcceleration * delta;
+        // Moving the character
         _velocity = MoveAndSlide(_velocity, Vector3.Up);
         
         for (int index = 0; index < GetSlideCount(); index++)
@@ -79,5 +82,16 @@ public class Player : KinematicBody
                 }
             }
         }
+    }
+
+    public void Die()
+    {
+        EmitSignal(nameof(Hit));
+        QueueFree();
+    }
+
+    public void OnMobDetectorBodyEntered(Node body)
+    {
+        Die();
     }
 }
