@@ -18,6 +18,10 @@ config/name="Squash the Creeps (3D)"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+MusicPlayer="*res://MusicPlayer.tscn"
+
 [display]
 
 window/size/width=720
