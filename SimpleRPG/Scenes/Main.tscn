@@ -1,39 +1,41 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
-[ext_resource path="res://Entities/player_down_idle_1.png" type="Texture" id=1]
+[ext_resource path="res://Entities/Player/player_down_idle_1.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Tileset/MapTileset.tres" type="TileSet" id=3]
-[ext_resource path="res://Entities/player_down_idle_2.png" type="Texture" id=4]
-[ext_resource path="res://Entities/player_down_attack_1.png" type="Texture" id=5]
-[ext_resource path="res://Entities/player_down_attack_2.png" type="Texture" id=6]
-[ext_resource path="res://Entities/player_down_walk_2.png" type="Texture" id=7]
-[ext_resource path="res://Entities/player_down_fireball_2.png" type="Texture" id=8]
-[ext_resource path="res://Entities/player_down_walk_1.png" type="Texture" id=9]
-[ext_resource path="res://Entities/player_down_fireball_1.png" type="Texture" id=10]
-[ext_resource path="res://Entities/player_left_idle_1.png" type="Texture" id=11]
-[ext_resource path="res://Entities/player_left_attack_1.png" type="Texture" id=12]
-[ext_resource path="res://Entities/player_left_attack_2.png" type="Texture" id=13]
-[ext_resource path="res://Entities/player_up_attack_1.png" type="Texture" id=14]
-[ext_resource path="res://Entities/player_up_idle_2.png" type="Texture" id=15]
-[ext_resource path="res://Entities/player_right_fireball_1.png" type="Texture" id=16]
-[ext_resource path="res://Entities/player_up_fireball_1.png" type="Texture" id=17]
-[ext_resource path="res://Entities/player_up_idle_1.png" type="Texture" id=18]
-[ext_resource path="res://Entities/player_up_attack_2.png" type="Texture" id=19]
-[ext_resource path="res://Entities/player_right_fireball_2.png" type="Texture" id=20]
-[ext_resource path="res://Entities/player_up_walk_2.png" type="Texture" id=21]
-[ext_resource path="res://Entities/player_right_idle_2.png" type="Texture" id=22]
-[ext_resource path="res://Entities/player_up_fireball_2.png" type="Texture" id=23]
-[ext_resource path="res://Entities/player_up_walk_1.png" type="Texture" id=24]
-[ext_resource path="res://Entities/player_right_walk_2.png" type="Texture" id=25]
-[ext_resource path="res://Entities/player_right_walk_1.png" type="Texture" id=26]
-[ext_resource path="res://Entities/player_right_attack_2.png" type="Texture" id=27]
-[ext_resource path="res://Entities/player_right_attack_1.png" type="Texture" id=28]
-[ext_resource path="res://Entities/player_left_idle_2.png" type="Texture" id=29]
-[ext_resource path="res://Entities/player_left_walk_1.png" type="Texture" id=30]
-[ext_resource path="res://Entities/player_left_fireball_1.png" type="Texture" id=31]
-[ext_resource path="res://Entities/player_left_fireball_2.png" type="Texture" id=32]
-[ext_resource path="res://Entities/player_left_walk_2.png" type="Texture" id=33]
-[ext_resource path="res://Entities/player_right_idle_1.png" type="Texture" id=34]
+[ext_resource path="res://Entities/Player/player_down_idle_2.png" type="Texture" id=4]
+[ext_resource path="res://Entities/Player/player_down_attack_1.png" type="Texture" id=5]
+[ext_resource path="res://Entities/Player/player_down_attack_2.png" type="Texture" id=6]
+[ext_resource path="res://Entities/Player/player_down_walk_2.png" type="Texture" id=7]
+[ext_resource path="res://Entities/Player/player_down_fireball_2.png" type="Texture" id=8]
+[ext_resource path="res://Entities/Player/player_down_walk_1.png" type="Texture" id=9]
+[ext_resource path="res://Entities/Player/player_down_fireball_1.png" type="Texture" id=10]
+[ext_resource path="res://Entities/Player/player_left_idle_1.png" type="Texture" id=11]
+[ext_resource path="res://Entities/Player/player_left_attack_1.png" type="Texture" id=12]
+[ext_resource path="res://Entities/Player/player_left_attack_2.png" type="Texture" id=13]
+[ext_resource path="res://Entities/Player/player_up_attack_1.png" type="Texture" id=14]
+[ext_resource path="res://Entities/Player/player_up_idle_2.png" type="Texture" id=15]
+[ext_resource path="res://Entities/Player/player_right_fireball_1.png" type="Texture" id=16]
+[ext_resource path="res://Entities/Player/player_up_fireball_1.png" type="Texture" id=17]
+[ext_resource path="res://Entities/Player/player_up_idle_1.png" type="Texture" id=18]
+[ext_resource path="res://Entities/Player/player_up_attack_2.png" type="Texture" id=19]
+[ext_resource path="res://Entities/Player/player_right_fireball_2.png" type="Texture" id=20]
+[ext_resource path="res://Entities/Player/player_up_walk_2.png" type="Texture" id=21]
+[ext_resource path="res://Entities/Player/player_right_idle_2.png" type="Texture" id=22]
+[ext_resource path="res://Entities/Player/player_up_fireball_2.png" type="Texture" id=23]
+[ext_resource path="res://Entities/Player/player_up_walk_1.png" type="Texture" id=24]
+[ext_resource path="res://Entities/Player/player_right_walk_2.png" type="Texture" id=25]
+[ext_resource path="res://Entities/Player/player_right_walk_1.png" type="Texture" id=26]
+[ext_resource path="res://Entities/Player/player_right_attack_2.png" type="Texture" id=27]
+[ext_resource path="res://Entities/Player/player_right_attack_1.png" type="Texture" id=28]
+[ext_resource path="res://Entities/Player/player_left_idle_2.png" type="Texture" id=29]
+[ext_resource path="res://Entities/Player/player_left_walk_1.png" type="Texture" id=30]
+[ext_resource path="res://Entities/Player/player_left_fireball_1.png" type="Texture" id=31]
+[ext_resource path="res://Entities/Player/player_left_fireball_2.png" type="Texture" id=32]
+[ext_resource path="res://Entities/Player/player_left_walk_2.png" type="Texture" id=33]
+[ext_resource path="res://Entities/Player/player_right_idle_1.png" type="Texture" id=34]
+[ext_resource path="res://GUI/HeathBar.gd" type="Script" id=35]
+[ext_resource path="res://GUI/ManaBar.gd" type="Script" id=36]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -156,4 +158,38 @@ cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 format = 1
 tile_data = PoolIntArray( 262150, 5, 0, 262183, 5, 0, 262219, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 327719, 5, 0, 327754, 5, 0, 327755, 5, 0, 327763, 5, 0, 327764, 5, 0, 393219, 5, 0, 393262, 5, 0, 393299, 5, 0, 458754, 5, 0, 458755, 5, 0, 458798, 5, 0, 458822, 5, 0, 458823, 5, 0, 458828, 5, 0, 524290, 5, 0, 524333, 5, 0, 589869, 5, 0, 589889, 5, 0, 655405, 5, 0, 655406, 5, 0, 720931, 5, 0, 720942, 5, 0, 720943, 5, 0, 786478, 5, 0, 786479, 5, 0, 852014, 5, 0, 917536, 5, 0, 917551, 5, 0, 917590, 5, 0, 983087, 5, 0, 983131, 5, 0, 1114197, 5, 0, 1114200, 5, 0, 1179693, 5, 0, 1441876, 5, 0, 1572899, 5, 0, 1572944, 5, 0, 1638403, 5, 0, 1638404, 5, 0, 1638435, 5, 0, 1638492, 5, 0, 1769479, 5, 0, 1835016, 5, 0, 1835065, 5, 0, 1966156, 5, 0, 2031622, 5, 0, 2031626, 5, 0, 2097162, 5, 0, 2097163, 5, 0, 2162697, 5, 0, 2228283, 5, 0, 2293820, 5, 0, 2359356, 5, 0, 2424904, 5, 0, 2424917, 5, 0, 2490419, 5, 0, 2555955, 5, 0, 2621458, 5, 0, 2883664, 5, 0, 2949126, 5, 0, 2949194, 5, 0, 3145731, 5, 0, 3211323, 5, 0, 3342375, 5, 0, 3342376, 5, 0, 3407878, 5, 0, 3407882, 5, 0, 3407912, 5, 0, 3473449, 5, 0, 3538985, 5, 0, 3538986, 5, 0, 3604512, 5, 0, 3604523, 5, 0, 3604524, 5, 0, 3604575, 5, 0, 3670044, 5, 0, 3670048, 5, 0, 3670060, 5, 0, 3670061, 5, 0, 3670079, 5, 0, 3670080, 5, 0, 3735579, 5, 0, 3735583, 5, 0, 3801094, 5, 0, 3801114, 5, 0, 3801115, 5, 0, 3801119, 5, 0, 3801183, 5, 0, 3866649, 5, 0, 3866656, 5, 0, 3866718, 5, 0, 3932174, 5, 0, 3932175, 5, 0, 3932192, 5, 0, 3997711, 5, 0, 3997728, 5, 0, 4063247, 5, 0, 4128784, 5, 0, 4128791, 5, 0, 4128792, 5, 0, 4194320, 5, 0, 4194326, 5, 0, 4325454, 5, 0, 4325461, 5, 0, 4390949, 5, 0, 4391006, 5, 0, 4456529, 5, 0, 4522017, 5, 0, 5373998, 5, 0, 5439545, 5, 0, 5439546, 5, 0, 5505028, 5, 0, 5505119, 5, 0, 5636186, 5, 0, 5963782, 5, 0, 5963792, 5, 0, 6422538, 5, 0 )
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Heath" type="ColorRect" parent="CanvasLayer"]
+margin_left = 3.0
+margin_top = 158.0
+margin_right = 77.0
+margin_bottom = 167.0
+color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 35 )
+
+[node name="Bar" type="ColorRect" parent="CanvasLayer/Heath"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 73.0
+margin_bottom = 8.0
+color = Color( 1, 0.196078, 0.196078, 1 )
+
+[node name="Mana" type="ColorRect" parent="CanvasLayer"]
+margin_left = 3.0
+margin_top = 168.0
+margin_right = 77.0
+margin_bottom = 177.0
+color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 36 )
+
+[node name="Bar" type="ColorRect" parent="CanvasLayer/Mana"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 73.0
+margin_bottom = 8.0
+color = Color( 0.129412, 0.501961, 1, 1 )
+
+[connection signal="player_stats_changed" from="Player" to="CanvasLayer/Heath" method="_on_Player_player_stats_changed"]
+[connection signal="player_stats_changed" from="Player" to="CanvasLayer/Mana" method="_on_Player_player_stats_changed"]
 [connection signal="animation_finished" from="Player/Sprite" to="Player" method="_on_Sprite_animation_finished"]

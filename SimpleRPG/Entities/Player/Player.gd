@@ -1,10 +1,36 @@
 extends KinematicBody2D
 
+# Player stats
+var health = 100
+var health_max = 100
+var health_regeneration = 1
+var mana = 100
+var mana_max = 100
+var mana_regeneration = 2
+
+signal player_stats_changed
+
 # Player Movement Speed
 export var speed = 75
 
 var last_direction = Vector2(0, 1)
 var attack_playing = false
+
+func _ready():
+	emit_signal("player_stats_changed", self)
+
+func _process(delta):
+	# Regenerates mana
+	var new_mana = min(mana + mana_regeneration * delta, mana_max)
+	if new_mana != mana:
+		mana = new_mana
+		emit_signal("player_stats_changed", self)
+	
+	# Regenerates Health
+	var new_health = min(health + health_regeneration * delta, health_max)
+	if new_health != health:
+		health = new_health
+		emit_signal("player_stats_changed", self)
 
 func _physics_process(delta):
 	# Get Player input
@@ -25,7 +51,7 @@ func _physics_process(delta):
 	# Animate player based on direction
 	if  not attack_playing:
 		_animates_player(direction)
-	
+
 func _animates_player(direction: Vector2):
 	if direction != Vector2.ZERO:
 		# Gradually update last_direction to counteract bounce of analog stick
@@ -43,7 +69,7 @@ func _animates_player(direction: Vector2):
 		
 		# Play idle animation
 		$Sprite.play(animation)
-		
+
 func get_animation_direction(direction: Vector2):
 	var norm_direction = direction.normalized()
 	if norm_direction.y >= 0.707:
@@ -56,17 +82,19 @@ func get_animation_direction(direction: Vector2):
 		return "right"
 	else:
 		return "down"
-		
+
 func _input(event):
 	if event.is_action_pressed("attack"):
 		attack_playing = true
 		var animation = get_animation_direction(last_direction) + "_attack"
 		$Sprite.play(animation)
 	elif event.is_action_pressed("fireball"):
-		attack_playing = true
-		var animation = get_animation_direction(last_direction) + "_fireball"
-		$Sprite.play(animation)
-
+		if mana >= 25:
+			mana = mana - 25
+			emit_signal("player_stats_changed", self)
+			attack_playing = true
+			var animation = get_animation_direction(last_direction) + "_fireball"
+			$Sprite.play(animation)
 
 func _on_Sprite_animation_finished():
 	attack_playing = false
