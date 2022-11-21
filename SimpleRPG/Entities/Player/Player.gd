@@ -3,6 +3,9 @@ extends KinematicBody2D
 # Player Movement Speed
 export var speed = 75
 
+var last_direction = Vector2(0, 1)
+var attack_playing = false
+
 func _physics_process(delta):
 	# Get Player input
 	var direction: Vector2
@@ -16,3 +19,37 @@ func _physics_process(delta):
 	# Apply Movement
 	var movement = speed * direction * delta
 	move_and_collide(movement)
+	
+	# Animate player based on direction
+	_animates_player(direction)
+	
+func _animates_player(direction: Vector2):
+	if direction != Vector2.ZERO:
+		# Gradually update last_direction to counteract bounce of analog stick
+		last_direction = 0.5 * last_direction + 0.5 * direction
+		
+		# Choose walk animation based on movement direction
+		var animation = get_animation_direction(last_direction) + "_walk"
+		
+		# Play walk animation
+		$Sprite.frames.set_animation_speed(animation, 2 + 8 * direction.length())
+		$Sprite.play(animation)
+	else:
+		# Choose walk animation based on movement direction
+		var animation = get_animation_direction(last_direction) + "_idle"
+		
+		# Play idle animation
+		$Sprite.play(animation)
+		
+func get_animation_direction(direction: Vector2):
+	var norm_direction = direction.normalized()
+	if norm_direction.y >= 0.707:
+		return "down"
+	elif norm_direction.y <= -0.707:
+		return "up"
+	elif norm_direction.x <= -0.707:
+		return "left"
+	elif norm_direction.x >= 0.707:
+		return "right"
+	else:
+		return "down"
