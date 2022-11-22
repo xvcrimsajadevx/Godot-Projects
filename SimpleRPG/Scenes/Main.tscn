@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Entities/Player/player_down_idle_1.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=2]
@@ -36,6 +36,8 @@
 [ext_resource path="res://Entities/Player/player_right_idle_1.png" type="Texture" id=34]
 [ext_resource path="res://GUI/HeathBar.gd" type="Script" id=35]
 [ext_resource path="res://GUI/ManaBar.gd" type="Script" id=36]
+[ext_resource path="res://Fonts/Font.tres" type="DynamicFont" id=37]
+[ext_resource path="res://GUI/potions.png" type="Texture" id=38]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -123,6 +125,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 7 )
 
+[sub_resource type="Theme" id=3]
+default_font = ExtResource( 37 )
+
 [node name="Root" type="Node"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
@@ -189,6 +194,91 @@ margin_top = 1.0
 margin_right = 73.0
 margin_bottom = 8.0
 color = Color( 0.129412, 0.501961, 1, 1 )
+
+[node name="XP" type="ColorRect" parent="CanvasLayer"]
+margin_left = 124.0
+margin_top = 156.0
+margin_right = 196.0
+margin_bottom = 176.0
+color = Color( 0, 0, 0, 0.627451 )
+
+[node name="LabelXP" type="Label" parent="CanvasLayer/XP"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 22.0
+margin_bottom = 11.0
+theme = SubResource( 3 )
+text = "XP:"
+
+[node name="ValueXP" type="Label" parent="CanvasLayer/XP"]
+margin_left = 21.0
+margin_top = 1.0
+margin_right = 71.0
+margin_bottom = 11.0
+theme = SubResource( 3 )
+text = "0/100"
+align = 2
+
+[node name="LabelLevel" type="Label" parent="CanvasLayer/XP"]
+margin_left = 2.0
+margin_top = 10.0
+margin_right = 22.0
+margin_bottom = 20.0
+theme = SubResource( 3 )
+text = "LVL:"
+
+[node name="ValueLevel" type="Label" parent="CanvasLayer/XP"]
+margin_left = 21.0
+margin_top = 10.0
+margin_right = 71.0
+margin_bottom = 20.0
+theme = SubResource( 3 )
+text = "1"
+align = 2
+
+[node name="HealthPotions" type="ColorRect" parent="CanvasLayer"]
+margin_left = 243.0
+margin_top = 156.0
+margin_right = 279.0
+margin_bottom = 176.0
+color = Color( 0, 0, 0, 0.627451 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/HealthPotions"]
+position = Vector2( 10, 10 )
+texture = ExtResource( 38 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="Label" type="Label" parent="CanvasLayer/HealthPotions"]
+margin_left = 19.0
+margin_top = 6.0
+margin_right = 33.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 37 )
+text = "0"
+align = 2
+
+[node name="ManaPotions" type="ColorRect" parent="CanvasLayer"]
+margin_left = 281.0
+margin_top = 156.0
+margin_right = 317.0
+margin_bottom = 176.0
+color = Color( 0, 0, 0, 0.627451 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/ManaPotions"]
+position = Vector2( 10, 10 )
+texture = ExtResource( 38 )
+region_enabled = true
+region_rect = Rect2( 16, 0, 16, 16 )
+
+[node name="Label" type="Label" parent="CanvasLayer/ManaPotions"]
+margin_left = 19.0
+margin_top = 6.0
+margin_right = 33.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 37 )
+text = "0"
+align = 2
 
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/Heath" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/Mana" method="_on_Player_player_stats_changed"]
