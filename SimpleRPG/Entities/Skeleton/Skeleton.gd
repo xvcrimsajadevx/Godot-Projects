@@ -82,3 +82,13 @@ func animates_monster(direction: Vector2):
 		# Choose idle animation based on movement direction
 		var animation = get_animation_direction(last_direction) + "_idle"
 		$AnimatedSprite.play(animation)
+
+func arise():
+	other_animation_playing = true
+	$AnimatedSprite.play("birth")
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == "birth":
+		$AnimatedSprite.animation = "down_idle"
+		$Timer.start()
+	other_animation_playing = false
