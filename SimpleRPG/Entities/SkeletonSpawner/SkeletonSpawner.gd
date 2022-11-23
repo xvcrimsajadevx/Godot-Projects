@@ -29,9 +29,12 @@ func _ready():
 	skeleton_count = start_skeletons
 
 func instance_skeleton():
-	#Instance the skeleton scene and add it to the scene tree
+	# Instance the skeleton scene and add it to the scene tree
 	var skeleton = skeleton_scene.instance()
 	add_child(skeleton)
+	
+	# Connect Skeleton's death signal to spawner
+	skeleton.connect("death", self, "on_Skeleton_death")
 	
 	# Place the child in a valid position
 	var valid_position = false
@@ -62,3 +65,6 @@ func _on_Timer_timeout():
 	if skeleton_count < max_skeletons:
 		instance_skeleton()
 		skeleton_count = skeleton_count + 1
+
+func on_Skeleton_death():
+	skeleton_count = skeleton_count - 1

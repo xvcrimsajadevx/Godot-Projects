@@ -139,6 +139,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="Player"]
 frames = SubResource( 2 )
 animation = "down_idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -148,6 +149,10 @@ shape = SubResource( 1 )
 current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Player"]
+enabled = true
+cast_to = Vector2( 0, 9 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
