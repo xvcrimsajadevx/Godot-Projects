@@ -333,8 +333,7 @@ align = 2
 
 [node name="GameOver" type="ColorRect" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 1.0
-margin_right = 321.0
+margin_right = 320.0
 margin_bottom = 180.0
 mouse_filter = 2
 color = Color( 0.54902, 0, 0, 1 )
