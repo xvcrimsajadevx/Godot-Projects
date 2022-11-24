@@ -145,6 +145,6 @@ func hit(damage):
 
 func _on_AnimatedSprite_frame_changed():
 	if $AnimatedSprite.animation.ends_with("_attack") and $AnimatedSprite.frame == 1:
-		var target = $RayCast2D.get_collider
+		var target = $RayCast2D.get_collider()
 		if target != null and target.name == "Player" and player.health > 0:
-			player.hit(attack_damage)
+			player.hit(attack_damage) 

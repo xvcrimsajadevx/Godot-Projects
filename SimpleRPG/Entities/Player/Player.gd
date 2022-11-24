@@ -59,7 +59,7 @@ func _physics_process(delta):
 	
 	# Turn RayCast2D toward movement direction
 	if direction != Vector2.ZERO:
-		$RayCast2D.cast_to = direction.normalized() * 9
+		$RayCast2D.cast_to = direction.normalized() * 12
 
 func _animates_player(direction: Vector2):
 	if direction != Vector2.ZERO:
@@ -123,3 +123,12 @@ func _input(event):
 
 func _on_Sprite_animation_finished():
 	attack_playing = false
+
+func hit(damage):
+	health -= damage
+	emit_signal("player_stats_changed", self)
+	if health <= 0:
+		set_process(false)
+		$AnimationPlayer.play("Game Over")
+	else:
+		$AnimationPlayer.play("Hit")
