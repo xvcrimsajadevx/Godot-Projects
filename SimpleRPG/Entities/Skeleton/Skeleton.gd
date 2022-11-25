@@ -7,6 +7,8 @@ var health_regeneration = 1
 
 # Node References
 var player
+# Reference to potion scene
+var potion_scene = preload("res://Entities/Potions/Potion.tscn")
 
 # Random number generator
 var rng = RandomNumberGenerator.new()
@@ -142,6 +144,13 @@ func hit(damage):
 		$AnimationPlayer.play("Hit")
 		$AnimatedSprite.play("death")
 		emit_signal("death")
+		
+		# 80% probability to drop a potion on death
+		if rng.randf() <= 0.8:
+			var potion = potion_scene.instance()
+			potion.type = rng.randi() % 2
+			get_tree().root.get_node("Root").call_deferred("add_child", potion)
+			potion.position = position
 
 func _on_AnimatedSprite_frame_changed():
 	if $AnimatedSprite.animation.ends_with("_attack") and $AnimatedSprite.frame == 1:
