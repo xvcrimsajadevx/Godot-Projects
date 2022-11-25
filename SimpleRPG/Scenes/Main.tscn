@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Entities/Player/player_down_idle_1.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=2]
@@ -42,6 +42,10 @@
 [ext_resource path="res://Entities/Potions/Potion.tscn" type="PackedScene" id=40]
 [ext_resource path="res://GUI/HealthPotions.gd" type="Script" id=41]
 [ext_resource path="res://GUI/ManaPotions.gd" type="Script" id=42]
+[ext_resource path="res://GUI/XP.gd" type="Script" id=43]
+[ext_resource path="res://GUI/mana_bonus.png" type="Texture" id=44]
+[ext_resource path="res://GUI/health_bonus.png" type="Texture" id=45]
+[ext_resource path="res://GUI/LevelPopup.gd" type="Script" id=46]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -256,6 +260,7 @@ margin_top = 156.0
 margin_right = 196.0
 margin_bottom = 176.0
 color = Color( 0, 0, 0, 0.627451 )
+script = ExtResource( 43 )
 
 [node name="LabelXP" type="Label" parent="CanvasLayer/XP"]
 margin_left = 2.0
@@ -358,6 +363,64 @@ text = "Game Over"
 align = 1
 valign = 1
 
+[node name="LevelPopup" type="Popup" parent="CanvasLayer"]
+pause_mode = 2
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 50.0
+margin_bottom = 25.0
+popup_exclusive = true
+script = ExtResource( 46 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/LevelPopup"]
+margin_right = 100.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="CanvasLayer/LevelPopup/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -24.0
+margin_right = 50.0
+margin_bottom = -14.0
+custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
+custom_fonts/font = ExtResource( 37 )
+text = "New Level!"
+align = 1
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/LevelPopup/ColorRect"]
+position = Vector2( 31, 30 )
+texture = ExtResource( 45 )
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/LevelPopup/ColorRect"]
+position = Vector2( 69, 30 )
+texture = ExtResource( 44 )
+
+[node name="Label2" type="Label" parent="CanvasLayer/LevelPopup/ColorRect"]
+margin_left = 7.0
+margin_top = 25.0
+margin_right = 13.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
+custom_fonts/font = ExtResource( 37 )
+text = "A"
+
+[node name="Label3" type="Label" parent="CanvasLayer/LevelPopup/ColorRect"]
+margin_left = 88.0
+margin_top = 25.0
+margin_right = 94.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
+custom_fonts/font = ExtResource( 37 )
+text = "B"
+
 [node name="SkeletonSpawner" parent="." instance=ExtResource( 39 )]
 
 [node name="Potion" parent="." instance=ExtResource( 40 )]
@@ -367,8 +430,10 @@ position = Vector2( 183, 78 )
 position = Vector2( 183, 101 )
 type = 1
 
+[connection signal="player_level_up" from="Player" to="CanvasLayer/LevelPopup" method="_on_Player_player_level_up"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/Heath" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/Mana" method="_on_Player_player_stats_changed"]
+[connection signal="player_stats_changed" from="Player" to="CanvasLayer/XP" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/HealthPotions" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/ManaPotions" method="_on_Player_player_stats_changed"]
 [connection signal="animation_finished" from="Player/Sprite" to="Player" method="_on_Sprite_animation_finished"]
