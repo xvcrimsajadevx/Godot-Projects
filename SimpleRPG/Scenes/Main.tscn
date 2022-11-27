@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Entities/Player/player_down_idle_1.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=2]
@@ -49,6 +49,12 @@
 [ext_resource path="res://Entities/Fiona/Fiona.tscn" type="PackedScene" id=47]
 [ext_resource path="res://Entities/Necklace/Necklace.tscn" type="PackedScene" id=48]
 [ext_resource path="res://GUI/DialoguePopup.gd" type="Script" id=49]
+[ext_resource path="res://Sounds/mountain-trials.ogg" type="AudioStream" id=50]
+[ext_resource path="res://Sounds/night-chip.ogg" type="AudioStream" id=51]
+[ext_resource path="res://Sounds/attack.wav" type="AudioStream" id=52]
+[ext_resource path="res://Sounds/fireball.wav" type="AudioStream" id=53]
+[ext_resource path="res://Sounds/object.wav" type="AudioStream" id=54]
+[ext_resource path="res://Sounds/level_up.wav" type="AudioStream" id=55]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -237,6 +243,25 @@ cast_to = Vector2( 0, 12 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 "anims/Game Over" = SubResource( 5 )
 anims/Hit = SubResource( 4 )
+
+[node name="Music" type="AudioStreamPlayer" parent="Player"]
+pause_mode = 2
+stream = ExtResource( 50 )
+volume_db = -12.0
+autoplay = true
+
+[node name="MusicGameOver" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 51 )
+volume_db = -12.0
+
+[node name="SoundAttack" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 52 )
+
+[node name="SoundFireball" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 53 )
+
+[node name="SoundObject" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 54 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
@@ -450,6 +475,9 @@ margin_bottom = 35.0
 custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
 custom_fonts/font = ExtResource( 37 )
 text = "B"
+
+[node name="SoundLevelUp" type="AudioStreamPlayer2D" parent="CanvasLayer/LevelPopup"]
+stream = ExtResource( 55 )
 
 [node name="DialoguePopup" type="Popup" parent="CanvasLayer"]
 pause_mode = 2

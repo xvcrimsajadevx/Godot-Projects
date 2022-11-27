@@ -92,7 +92,7 @@ func _physics_process(delta):
 	if direction != Vector2.ZERO:
 		$RayCast2D.cast_to = direction.normalized() * 16
 
-func get_animation_direction(direction: Vector2):
+func get_animation_direction(direction):
 	var norm_direction = direction.normalized()
 	if norm_direction.y >= 0.707:
 		return "down"
@@ -105,7 +105,7 @@ func get_animation_direction(direction: Vector2):
 	else:
 		return "down"
 
-func animates_monster(direction: Vector2):
+func animates_monster(direction):
 	if direction != Vector2.ZERO:
 		# Gradually update last_direction to counteract bounce of analog stick
 		last_direction = direction
@@ -144,6 +144,8 @@ func hit(damage):
 		$AnimationPlayer.play("Hit")
 		$AnimatedSprite.play("death")
 		emit_signal("death")
+		#Play death sound
+		$SoundDeath.play()
 		
 		# 80% probability to drop a potion on death
 		if rng.randf() <= 0.8:
@@ -159,4 +161,6 @@ func _on_AnimatedSprite_frame_changed():
 	if $AnimatedSprite.animation.ends_with("_attack") and $AnimatedSprite.frame == 1:
 		var target = $RayCast2D.get_collider()
 		if target != null and target.name == "Player" and player.health > 0:
-			player.hit(attack_damage) 
+			player.hit(attack_damage)
+		# Play attack sound
+		$SoundAttack.play()
