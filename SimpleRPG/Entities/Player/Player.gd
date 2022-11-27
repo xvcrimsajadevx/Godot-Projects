@@ -120,6 +120,10 @@ func _input(event):
 				if target.name.find("Skeleton") >= 0:
 					# Skeleton hit!
 					target.hit(attack_damage)
+				if target.is_in_group("NPCs"):
+					# Talk to NPC
+					target.talk()
+					return
 			
 			# Play attack animation
 			attack_playing = true

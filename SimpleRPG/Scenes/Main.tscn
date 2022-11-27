@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Entities/Player/player_down_idle_1.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Player/Player.gd" type="Script" id=2]
@@ -46,6 +46,9 @@
 [ext_resource path="res://GUI/mana_bonus.png" type="Texture" id=44]
 [ext_resource path="res://GUI/health_bonus.png" type="Texture" id=45]
 [ext_resource path="res://GUI/LevelPopup.gd" type="Script" id=46]
+[ext_resource path="res://Entities/Fiona/Fiona.tscn" type="PackedScene" id=47]
+[ext_resource path="res://Entities/Necklace/Necklace.tscn" type="PackedScene" id=48]
+[ext_resource path="res://GUI/DialoguePopup.gd" type="Script" id=49]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -178,6 +181,33 @@ tracks/0/keys = {
 
 [sub_resource type="Theme" id=3]
 default_font = ExtResource( 37 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "ShowDialogue"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect/Dialogue:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect/Answers:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="Root" type="Node"]
 
@@ -365,7 +395,6 @@ valign = 1
 
 [node name="LevelPopup" type="Popup" parent="CanvasLayer"]
 pause_mode = 2
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -380,6 +409,7 @@ script = ExtResource( 46 )
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/LevelPopup"]
 margin_right = 100.0
 margin_bottom = 50.0
+color = Color( 0.968627, 0.992157, 0.745098, 1 )
 
 [node name="Label" type="Label" parent="CanvasLayer/LevelPopup/ColorRect"]
 anchor_left = 0.5
@@ -421,6 +451,52 @@ custom_colors/font_color = Color( 0.352941, 0.352941, 0.352941, 1 )
 custom_fonts/font = ExtResource( 37 )
 text = "B"
 
+[node name="DialoguePopup" type="Popup" parent="CanvasLayer"]
+pause_mode = 2
+margin_right = 40.0
+margin_bottom = 40.0
+popup_exclusive = true
+script = ExtResource( 49 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DialoguePopup"]
+margin_left = 10.0
+margin_top = 115.0
+margin_right = 310.0
+margin_bottom = 170.0
+color = Color( 0.968627, 0.992157, 0.745098, 1 )
+
+[node name="NPCName" type="Label" parent="CanvasLayer/DialoguePopup/ColorRect"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 295.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 37 )
+text = "Fiona"
+
+[node name="Dialogue" type="Label" parent="CanvasLayer/DialoguePopup/ColorRect"]
+margin_left = 5.0
+margin_top = 15.0
+margin_right = 295.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_fonts/font = ExtResource( 37 )
+text = "Hello adventurer! I lost my necklace, can you please find it for me?"
+autowrap = true
+
+[node name="Answers" type="Label" parent="CanvasLayer/DialoguePopup/ColorRect"]
+margin_left = 5.0
+margin_top = 43.0
+margin_right = 295.0
+margin_bottom = 53.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 37 )
+text = "[A] Yes   [B] No"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/DialoguePopup"]
+anims/ShowDialogue = SubResource( 6 )
+
 [node name="SkeletonSpawner" parent="." instance=ExtResource( 39 )]
 
 [node name="Potion" parent="." instance=ExtResource( 40 )]
@@ -430,6 +506,12 @@ position = Vector2( 183, 78 )
 position = Vector2( 183, 101 )
 type = 1
 
+[node name="Fiona" parent="." instance=ExtResource( 47 )]
+position = Vector2( 231, 104 )
+
+[node name="Necklace" parent="." instance=ExtResource( 48 )]
+position = Vector2( 120, 41 )
+
 [connection signal="player_level_up" from="Player" to="CanvasLayer/LevelPopup" method="_on_Player_player_level_up"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/Heath" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/Mana" method="_on_Player_player_stats_changed"]
@@ -437,3 +519,4 @@ type = 1
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/HealthPotions" method="_on_Player_player_stats_changed"]
 [connection signal="player_stats_changed" from="Player" to="CanvasLayer/ManaPotions" method="_on_Player_player_stats_changed"]
 [connection signal="animation_finished" from="Player/Sprite" to="Player" method="_on_Sprite_animation_finished"]
+[connection signal="animation_finished" from="CanvasLayer/DialoguePopup/AnimationPlayer" to="CanvasLayer/DialoguePopup" method="_on_AnimationPlayer_animation_finished"]
