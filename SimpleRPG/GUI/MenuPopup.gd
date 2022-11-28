@@ -4,9 +4,6 @@ onready var player = get_node("/root/Root/Player")
 var already_paused
 var selected_menu
 
-func _ready():
-	hide()
-
 func change_menu_color():
 	$Resume.color = Color.gray
 	$Restart.color = Color.gray

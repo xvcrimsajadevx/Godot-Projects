@@ -183,6 +183,9 @@ func hit(damage):
 		$AnimationPlayer.play("Game Over")
 		$Music.stop()
 		$MusicGameOver.play()
+		set_process_input(false)
+		get_tree().root.get_node("Root/CanvasLayer/MenuPopup").set_process_input(false)
+		get_tree().root.get_node("Root/CanvasLayer/GameOver").set_process_input(true)
 	else:
 		$AnimationPlayer.play("Hit")
 
