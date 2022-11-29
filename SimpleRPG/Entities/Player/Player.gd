@@ -124,6 +124,14 @@ func _input(event):
 					# Talk to NPC
 					target.talk()
 					return
+				if target.name == "Bed":
+					# Sleep
+					$AnimationPlayer.play("Sleep")
+					yield(get_tree().create_timer(1), "timeout")
+					health = health_max
+					mana = mana_max
+					emit_signal("player_stats_changed", self)
+					return
 			
 			# Play attack animation
 			attack_playing = true
@@ -185,7 +193,6 @@ func hit(damage):
 		$MusicGameOver.play()
 		set_process_input(false)
 		get_tree().root.get_node("Root/CanvasLayer/MenuPopup").set_process_input(false)
-		get_tree().root.get_node("Root/CanvasLayer/GameOver").set_process_input(true)
 	else:
 		$AnimationPlayer.play("Hit")
 
@@ -206,3 +213,7 @@ func add_xp(value):
 		xp_next_level *= 2
 		emit_signal("player_level_up")
 	emit_signal("player_stats_changed", self)
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Game Over":
+		get_tree().root.get_node("Root/CanvasLayer/GameOver").set_process_input(true)
