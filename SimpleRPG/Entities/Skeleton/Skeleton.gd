@@ -164,3 +164,13 @@ func _on_AnimatedSprite_frame_changed():
 			player.hit(attack_damage)
 		# Play attack sound
 		$SoundAttack.play()
+
+func to_dictionary():
+	return {
+		"position" : [position.x, position.y],
+		"health" : health
+	}
+
+func from_dictionary(data):
+	position = Vector2(data.position[0], data.position[1])
+	health = data.health

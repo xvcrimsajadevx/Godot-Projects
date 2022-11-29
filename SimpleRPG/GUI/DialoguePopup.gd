@@ -10,11 +10,6 @@ var npc
 func _ready():
 	set_process_input(false)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 func _input(event):
 	if event is InputEventKey:
 		if event.scancode == KEY_A:

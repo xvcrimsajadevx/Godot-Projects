@@ -24,9 +24,10 @@ func _ready():
 	rng.randomize()
 	
 	# Create skeletons
-	for i in range(start_skeletons):
-		instance_skeleton()
-	skeleton_count = start_skeletons
+	if not get_parent().load_saved_game:
+		for i in range(start_skeletons):
+			instance_skeleton()
+		skeleton_count = start_skeletons
 
 func instance_skeleton():
 	# Instance the skeleton scene and add it to the scene tree
@@ -68,3 +69,21 @@ func _on_Timer_timeout():
 
 func on_Skeleton_death():
 	skeleton_count = skeleton_count - 1
+
+func to_dictionary():
+	var skeletons = []
+	for node in get_children():
+		if node.name.find("Skeleton") >= 0:
+			skeletons.append(node.to_dictionary())
+	return skeletons
+
+func from_dictionary(data):
+	skeleton_count = data.size()
+	for skeleton_data in data:
+		var skeleton = skeleton_scene.instance()
+		skeleton.from_dictionary(skeleton_data)
+		add_child(skeleton)
+		skeleton.get_node("Timer").start()
+		
+		# Connect Skeleton's death signal to spawner
+		skeleton.connect("death", self, "on_Skeleton_death")

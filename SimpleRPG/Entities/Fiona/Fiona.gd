@@ -15,10 +15,6 @@ func _ready():
 	dialoguePopup = get_tree().root.get_node("Root/CanvasLayer/DialoguePopup")
 	player = get_tree().root.get_node("Root/Player")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 func talk(answer = ""):
 	# Set Fiona's animation to "talk"
 	$AnimatedSprite.play("talk")
@@ -149,3 +145,13 @@ func talk(answer = ""):
 					dialoguePopup.close()
 					# Set Fiona animation to idle
 					$AnimatedSprite.play("idle")
+
+func to_dictionary():
+	return {
+		"quest_status" : quest_status,
+		"necklace_found" : necklace_found
+	}
+
+func from_dictionary(data):
+	quest_status = int(data.quest_status)
+	necklace_found = data.necklace_found

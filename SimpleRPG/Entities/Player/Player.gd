@@ -192,7 +192,6 @@ func hit(damage):
 		$Music.stop()
 		$MusicGameOver.play()
 		set_process_input(false)
-		get_tree().root.get_node("Root/CanvasLayer/MenuPopup").set_process_input(false)
 	else:
 		$AnimationPlayer.play("Hit")
 
@@ -214,6 +213,28 @@ func add_xp(value):
 		emit_signal("player_level_up")
 	emit_signal("player_stats_changed", self)
 
-func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "Game Over":
-		get_tree().root.get_node("Root/CanvasLayer/GameOver").set_process_input(true)
+func to_dictionary():
+	return {
+		"position" : [position.x, position.y],
+		"health" : health,
+		"health_max" : health_max,
+		"mana" : mana,
+		"xp" : xp,
+		"xp_next_level" : xp_next_level,
+		"level" : level,
+		"health_potions" : health_potions,
+		"mana_potions" : mana_potions
+	}
+
+func from_dictionary(data):
+	position = Vector2(data.position[0], data.position[1])
+	health = data.health
+	health_max = data.health_max
+	mana = data.mana
+	xp = data.xp
+	xp_next_level = data.xp_next_level
+	level = data.level
+	health_potions = data.health_potions 
+	mana_potions = data.mana_potions
+	
+	emit_signal("player_stats_changed", self)
