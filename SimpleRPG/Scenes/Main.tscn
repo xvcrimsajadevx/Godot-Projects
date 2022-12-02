@@ -635,8 +635,7 @@ valign = 1
 
 [node name="Sleep" type="ColorRect" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 1.0
-margin_right = 321.0
+margin_right = 320.0
 margin_bottom = 180.0
 color = Color( 0, 0, 0, 1 )
 
