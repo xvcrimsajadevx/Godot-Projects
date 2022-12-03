@@ -5,11 +5,16 @@
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 160, 90 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="YSort" type="YSort" parent="."]
 
-[node name="Bush" parent="." instance=ExtResource( 1 )]
-position = Vector2( 56, 40 )
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 168, 96 )
+
+[node name="Bush" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 80, 48 )
+
+[node name="Bush2" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 248, 72 )
+
+[node name="Bush3" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 120, 128 )
