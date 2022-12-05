@@ -507,6 +507,7 @@ tile_data = PoolIntArray( -65530, 0, 0, -65529, 0, 2, 6, 0, 65536, 7, 0, 65538, 
 [node name="CliffTileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
+collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 1, -65534, 0, 2, -65532, 0, 0, -65531, 0, 1, -65530, 0, 1, -65529, 0, 1, -65528, 0, 1, -65527, 0, 2, 0, 0, 131072, 1, 0, 131073, 2, 0, 131074, 4, 0, 131072, 5, 0, 131073, 6, 0, 131073, 7, 0, 131073, 8, 0, 131073, 9, 0, 131074, 262146, 0, 0, 262147, 0, 1, 262148, 0, 2, 327682, 0, 65536, 327683, 0, 65537, 327684, 0, 131077, 327685, 0, 2, 393218, 0, 131072, 393219, 0, 131073, 393220, 0, 131073, 393221, 0, 131074 )
 
@@ -518,27 +519,27 @@ position = Vector2( 168, 96 )
 [node name="Bushes" type="YSort" parent="YSort"]
 
 [node name="Bush" parent="YSort/Bushes" instance=ExtResource( 1 )]
-position = Vector2( 72.1428, 40.704 )
+position = Vector2( 72, 44 )
 
 [node name="Bush2" parent="YSort/Bushes" instance=ExtResource( 1 )]
-position = Vector2( 227.796, 56.2855 )
+position = Vector2( 224, 64 )
 
 [node name="Bush3" parent="YSort/Bushes" instance=ExtResource( 1 )]
-position = Vector2( 32.4374, 160.695 )
+position = Vector2( 32, 160 )
 
 [node name="Bush4" parent="YSort/Bushes" instance=ExtResource( 1 )]
-position = Vector2( 278.932, 148.165 )
+position = Vector2( 280, 144 )
 
 [node name="Bush5" parent="YSort/Bushes" instance=ExtResource( 1 )]
-position = Vector2( 122.348, 116.175 )
+position = Vector2( 112, 119 )
 
 [node name="Bush6" parent="YSort/Bushes" instance=ExtResource( 1 )]
-position = Vector2( 286.228, 39.2862 )
+position = Vector2( 288, 40 )
 
 [node name="Grass" type="YSort" parent="YSort"]
 
 [node name="Grass" parent="YSort/Grass" instance=ExtResource( 6 )]
-position = Vector2( 48, 48 )
+position = Vector2( 32, 48 )
 
 [node name="Grass2" parent="YSort/Grass" instance=ExtResource( 6 )]
 position = Vector2( 16, 80 )
