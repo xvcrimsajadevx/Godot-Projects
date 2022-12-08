@@ -19,6 +19,7 @@ var knockback = Vector2.ZERO
 onready var sprite = $AnimatedSprite
 onready var stats = $Stats
 onready var playerDetectionZone = $PlayerDetectionZone
+onready var hurtbox = $Hurtbox
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -46,9 +47,11 @@ func seek_player():
 	if playerDetectionZone.can_see_player():
 		state = CHASE
 
-func _on_HurtBox_area_entered(area):
+func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
 	knockback = area.knockback_vector * 120
+	hurtbox.start_invincibility(0.1)
+	hurtbox.create_hit_effect()
 
 func _on_Stats_no_health():
 	queue_free()
