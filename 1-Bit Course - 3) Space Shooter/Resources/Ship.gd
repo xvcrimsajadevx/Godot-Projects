@@ -17,3 +17,8 @@ func fire_bullet():
 	var main = get_tree().current_scene
 	main.add_child(bullet)
 	bullet.global_position = global_position
+
+
+func _on_Ship_area_entered(area):
+	area.queue_free()
+	queue_free()
