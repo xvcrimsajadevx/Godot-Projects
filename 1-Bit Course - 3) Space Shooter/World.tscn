@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Resources/Ship.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Resources/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://EnemySpawner.tscn" type="PackedScene" id=3]
 
 [node name="World" type="Node"]
 
@@ -16,14 +16,5 @@ __meta__ = {
 [node name="Ship" parent="." instance=ExtResource( 1 )]
 position = Vector2( 30, 90 )
 
-[node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 288, 40 )
-
-[node name="Enemy2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 290, 116 )
-
-[node name="Enemy3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 238, 146 )
-
-[node name="Enemy4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 239, 56 )
+[node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
+position = Vector2( 320, 0 )
