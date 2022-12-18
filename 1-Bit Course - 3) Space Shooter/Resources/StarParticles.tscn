@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="StarParticles" type="CPUParticles2D"]
+position = Vector2( 320, 90 )
+rotation = -3.14159
+amount = 200
+lifetime = 7.0
+preprocess = 7.0
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 90 )
+direction = Vector2( 0, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 80.0
+initial_velocity_random = 0.5
