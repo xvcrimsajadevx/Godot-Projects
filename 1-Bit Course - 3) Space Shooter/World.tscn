@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World.gd" type="Script" id=2]
 [ext_resource path="res://EnemySpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Resources/PixelFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/StarParticles.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Node" groups=["World"]]
 script = ExtResource( 2 )
@@ -15,19 +17,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="StarParticles" type="CPUParticles2D" parent="."]
-position = Vector2( 320, 90 )
-rotation = -3.14159
-amount = 200
-lifetime = 7.0
-preprocess = 7.0
-emission_shape = 2
-emission_rect_extents = Vector2( 1, 90 )
-direction = Vector2( 0, 0 )
-spread = 0.0
-gravity = Vector2( 0, 0 )
-initial_velocity = 80.0
-initial_velocity_random = 0.5
+[node name="StarParticles" parent="." instance=ExtResource( 5 )]
 
 [node name="Ship" parent="." instance=ExtResource( 1 )]
 position = Vector2( 30, 90 )
@@ -38,7 +28,8 @@ position = Vector2( 320, 0 )
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchor_right = 1.0
-margin_bottom = 14.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
 text = "Score: 0"
 align = 1
 valign = 1

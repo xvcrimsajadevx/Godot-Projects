@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Resources/PixelFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/StarParticles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/StartMenu.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="StartMenu" type="Node"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="StartButton" type="Button" parent="."]
+margin_left = 120.0
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "START"
+icon_align = 1
+
+[node name="StarParticles" parent="." instance=ExtResource( 2 )]
+
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
