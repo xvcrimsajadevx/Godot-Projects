@@ -40,11 +40,11 @@ Course Source: https://heartbeast-gamedev-school.teachable.com/p/1-bit-godot-cou
    - Further Developement: Maybe. May go side-scrolling platformer?
    
 ###### 3) Space Shooter (GDScript)
-   - Status: In Progress - Custom Fonts + Changing Scenes
-   - Itch.io: https://xvcrimsajadevx.itch.io/heartbeast-1-bit-godot-piggy
+   - Status: Complete
+   - Itch.io: https://xvcrimsajadevx.itch.io/heartbeast-1-bit-godot-space-shooter
    - Further Developement: I have some ideas for increasing difficultly, adding powerups, and simple enemy animations and the likes. Will see if they come to fruition after doing the final project of the course.
 
 ###### 3) Metroidvania (GDScript)
-   - Status: PENDING
+   - Status: Coming Soon
    - Itch.io: N/A
    - Further Developement: N/A
