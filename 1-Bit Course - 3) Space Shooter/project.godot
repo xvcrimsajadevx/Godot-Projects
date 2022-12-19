@@ -14,6 +14,10 @@ config/name="1-Bit Course - 3) Space Shooter"
 run/main_scene="res://Resources/StartMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Music="res://Resources/Music.tscn"
+
 [display]
 
 window/size/width=320
