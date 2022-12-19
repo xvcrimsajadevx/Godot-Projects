@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Music="res://Resources/Music.tscn"
+SaveAndLoad="*res://SaveAndLoad.gd"
 
 [display]
 
