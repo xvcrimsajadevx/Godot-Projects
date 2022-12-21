@@ -89,3 +89,8 @@ anims/Idle = SubResource( 2 )
 anims/Jump = SubResource( 5 )
 anims/RESET = SubResource( 3 )
 anims/Run = SubResource( 4 )
+
+[node name="CameraFollow" type="RemoteTransform2D" parent="."]
+position = Vector2( 0, -8 )
+update_rotation = false
+update_scale = false
