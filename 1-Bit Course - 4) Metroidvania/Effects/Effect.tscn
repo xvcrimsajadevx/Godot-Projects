@@ -1,6 +1,6 @@
 [gd_scene format=2]
 
-[node name="Effect" type="Node"]
+[node name="Effect" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
 

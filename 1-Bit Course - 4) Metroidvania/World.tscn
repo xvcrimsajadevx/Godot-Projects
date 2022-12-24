@@ -28,9 +28,6 @@ tile_data = PoolIntArray( 65531, 0, 0, 65532, 0, 5, 65533, 0, 196609, 65534, 0, 
 [node name="MovingPlatform" parent="." instance=ExtResource( 4 )]
 position = Vector2( -32, 96 )
 
-[node name="KinematicBody2D" parent="MovingPlatform" index="0"]
-position = Vector2( 64, 0 )
-
 [node name="AnimationPlayer" parent="MovingPlatform" index="2"]
 playback_speed = 0.5
 
