@@ -48,4 +48,7 @@ cast_to = Vector2( 6, 0 )
 position = Vector2( 0, -7 )
 shape = SubResource( 2 )
 
+[node name="EnemyStats" parent="." index="8"]
+max_health = 3
+
 [editable path="Hurtbox"]

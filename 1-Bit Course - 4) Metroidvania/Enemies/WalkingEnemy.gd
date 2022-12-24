@@ -15,7 +15,7 @@ onready var wallRight = $WallRight
 func _ready():
 	state = WALKING_DIRECTION
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	match state:
 		DIRECTION.RIGHT:
 			motion.x = MAX_SPEED
