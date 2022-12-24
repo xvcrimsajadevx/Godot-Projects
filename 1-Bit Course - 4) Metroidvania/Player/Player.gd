@@ -12,6 +12,7 @@ export(int) var JUMP_FORCE = 128
 export(int) var MAX_SLOPE_ANGLE =  46
 export(int) var BULLET_SPEED = 250
 
+var invincible = false setget set_invincible
 var motion = Vector2.ZERO
 var snap_vector = Vector2.ZERO
 var just_jumped = false
@@ -22,6 +23,10 @@ onready var coyoteJumpTimer = $CoyoteJumpTimer
 onready var fireBulletTimer = $FireBulletTimer
 onready var gun = $Sprite/PlayerGun
 onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
+onready var blinkAnimator = $BlinkAnimator
+
+func set_invincible(value):
+	invincible = value
 
 func _physics_process(delta):
 	just_jumped = false
@@ -120,3 +125,7 @@ func move():
 		motion.y = 0
 		position.y = last_position.y
 		coyoteJumpTimer.start()
+
+func _on_Hurtbox_hit(damage):
+	if not invincible:
+		blinkAnimator.play("Blink")
