@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="1-Bit Course - 4) Metroidvania"
-run/main_scene="res://World.tscn"
+run/main_scene="res://UI/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
