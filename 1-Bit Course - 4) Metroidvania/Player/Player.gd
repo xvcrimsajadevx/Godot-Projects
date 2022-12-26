@@ -10,9 +10,18 @@ export(int) var ACCELERATION = 512
 export(int) var MAX_SPEED = 64
 export(float) var FRICTION = 0.25
 export(int) var GRAVITY = 200
+export(int) var WALL_SLIDE_SPEED = 42
+export(int) var MAX_WALL_SLIDE_SPEED = 128
 export(int) var JUMP_FORCE = 128
 export(int) var MAX_SLOPE_ANGLE =  46
 export(int) var BULLET_SPEED = 250
+
+enum {
+	MOVE,
+	WALL_SLIDE
+}
+
+var state = MOVE
 
 var invincible = false setget set_invincible
 var motion = Vector2.ZERO
@@ -36,14 +45,31 @@ func _ready():
 
 func _physics_process(delta):
 	just_jumped = false
-	var input_vector = get_input_vector()
-	apply_horizonal_force(input_vector, delta)
-	apply_friction(input_vector)
-	update_snap_vector()
-	jump_check()
-	apply_gravity(delta)
-	update_animations(input_vector)
-	move()
+	
+	match state:
+		MOVE:
+			var input_vector = get_input_vector()
+			apply_horizonal_force(input_vector, delta)
+			apply_friction(input_vector)
+			update_snap_vector()
+			jump_check()
+			apply_gravity(delta)
+			update_animations(input_vector)
+			move()
+			wall_slide_check()
+		
+		WALL_SLIDE:
+			spriteAnimator.play("Wall Slide")
+			
+			var wall_axis = get_wall_axis()
+			if wall_axis != 0:
+				sprite.scale.x = wall_axis
+			
+			wall_slide_jump_check(wall_axis)
+			wall_slide_drop_check(delta)
+			wall_slide_fast_slide_check(delta)
+			move()
+			wall_detach_check(wall_axis)
 	
 	if Input.is_action_pressed("Fire") and fireBulletTimer.time_left == 0:
 		fire_bullet()
@@ -139,6 +165,41 @@ func move():
 		motion.y = 0
 		position.y = last_position.y
 		coyoteJumpTimer.start()
+
+func wall_slide_check():
+	if not is_on_floor() and is_on_wall():
+		state = WALL_SLIDE
+		double_jump = true
+
+func get_wall_axis():
+	var is_right_wall = test_move(transform, Vector2.RIGHT)
+	var is_left_wall = test_move(transform, Vector2.LEFT)
+	return int(is_left_wall) - int(is_right_wall)
+
+func wall_slide_jump_check(wall_axis):
+	if Input.is_action_just_pressed("ui_up"):
+		motion.x = wall_axis * MAX_SPEED
+		motion.y = JUMP_FORCE/1.25
+		state = MOVE
+
+func wall_slide_drop_check(delta):
+	if Input.is_action_just_pressed("ui_right"):
+		motion.x = ACCELERATION * delta
+		state = MOVE
+	
+	if Input.is_action_just_pressed("ui_left"):
+		motion.x = -ACCELERATION * delta
+		state = MOVE
+
+func wall_slide_fast_slide_check(delta):
+	var max_slide_speed = WALL_SLIDE_SPEED
+	if Input.is_action_just_pressed("ui_down"):
+		max_slide_speed = MAX_WALL_SLIDE_SPEED
+	motion.y = min(motion.y + GRAVITY * delta, max_slide_speed)
+
+func wall_detach_check(wall_axis):
+	if wall_axis == 0 or is_on_floor():
+		state = MOVE
 
 func _on_Hurtbox_hit(damage):
 	if not invincible:
