@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const DustEffect = preload("res://Effects/DustEffect.tscn")
+const WallDustEffect = preload("res://Effects/WallDustEffect.tscn")
 const JumpEffect = preload("res://Effects/JumpEffect.tscn")
 const PlayerBullet = preload("res://Player/PlayerBullet.tscn")
 
@@ -66,10 +67,9 @@ func _physics_process(delta):
 				sprite.scale.x = wall_axis
 			
 			wall_slide_jump_check(wall_axis)
-			wall_slide_drop_check(delta)
-			wall_slide_fast_slide_check(delta)
+			wall_slide_drop(delta)
 			move()
-			wall_detach_check(wall_axis)
+			wall_detach(delta, wall_axis)
 	
 	if Input.is_action_pressed("Fire") and fireBulletTimer.time_left == 0:
 		fire_bullet()
@@ -170,6 +170,7 @@ func wall_slide_check():
 	if not is_on_floor() and is_on_wall():
 		state = WALL_SLIDE
 		double_jump = true
+		create_dust_effect()
 
 func get_wall_axis():
 	var is_right_wall = test_move(transform, Vector2.RIGHT)
@@ -181,8 +182,17 @@ func wall_slide_jump_check(wall_axis):
 		motion.x = wall_axis * MAX_SPEED
 		motion.y = JUMP_FORCE/1.25
 		state = MOVE
+		var dust_position = global_position + Vector2(wall_axis*3, -2)
+		var dust = Utils.instance_scene_on_main(WallDustEffect, dust_position)
+		dust.scale.x = wall_axis
 
-func wall_slide_drop_check(delta):
+func wall_slide_drop(delta):
+	var max_slide_speed = WALL_SLIDE_SPEED
+	if Input.is_action_pressed("ui_down"):
+		max_slide_speed = MAX_WALL_SLIDE_SPEED
+	motion.y = min(motion.y + GRAVITY * delta, max_slide_speed)
+
+func wall_detach(delta, wall_axis):
 	if Input.is_action_just_pressed("ui_right"):
 		motion.x = ACCELERATION * delta
 		state = MOVE
@@ -190,14 +200,7 @@ func wall_slide_drop_check(delta):
 	if Input.is_action_just_pressed("ui_left"):
 		motion.x = -ACCELERATION * delta
 		state = MOVE
-
-func wall_slide_fast_slide_check(delta):
-	var max_slide_speed = WALL_SLIDE_SPEED
-	if Input.is_action_just_pressed("ui_down"):
-		max_slide_speed = MAX_WALL_SLIDE_SPEED
-	motion.y = min(motion.y + GRAVITY * delta, max_slide_speed)
-
-func wall_detach_check(wall_axis):
+		
 	if wall_axis == 0 or is_on_floor():
 		state = MOVE
 
