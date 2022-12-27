@@ -45,6 +45,6 @@ Course Source: https://heartbeast-gamedev-school.teachable.com/p/1-bit-godot-cou
    - Further Developement: I have some ideas for increasing difficultly, adding powerups, and simple enemy animations and the likes. Will see if they come to fruition after doing the final project of the course.
 
 ###### 3) Metroidvania (GDScript)
-   - Status: In Progress - Tile Map & Autotiling
-   - Itch.io: N/A
+   - Status: In Progress - MainInstances Resources & Review
+   - Itch.io: https://xvcrimsajadevx.itch.io/heartbeast-1-bit-godot-metroidvania
    - Further Developement: N/A
