@@ -42,6 +42,8 @@ onready var muzzle = $Sprite/PlayerGun/Sprite/Muzzle
 onready var blinkAnimator = $BlinkAnimator
 onready var powerupDetector = $PowerupDetector
 
+signal hit_door(door)
+
 func set_invincible(value):
 	invincible = value
 
