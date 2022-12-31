@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://World/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Enemies/PlantEnemy.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Enemies/CrawlingEnemy.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/Brick.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Player/MissilesPowerup.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Loop"
@@ -132,8 +133,8 @@ position = Vector2( 224, 144 )
 position = Vector2( 74.8795, -61.207 )
 
 [node name="PathFollow2D" parent="MovingPlatform/Path2D" index="0"]
-position = Vector2( 74.8795, -61.207 )
-offset = 194.634
+position = Vector2( 80, -64 )
+offset = 200.464
 
 [node name="AnimationPlayer" parent="MovingPlatform" index="2"]
 playback_speed = 0.5
@@ -174,7 +175,8 @@ position = Vector2( 0, -1 )
 curve = ExtResource( 9 )
 
 [node name="PathFollow2D" parent="MovingPlatform3/Path2D" index="0"]
-position = Vector2( 0, -1 )
+position = Vector2( -1, -64 )
+offset = 63.003
 
 [node name="AnimationPlayer" parent="MovingPlatform3" index="2"]
 playback_speed = 0.8
@@ -207,7 +209,8 @@ position = Vector2( 0, -1 )
 curve = ExtResource( 9 )
 
 [node name="PathFollow2D" parent="MovingPlatform5/Path2D" index="0"]
-position = Vector2( 0, -1 )
+position = Vector2( -1, -64 )
+offset = 63.003
 
 [node name="AnimationPlayer" parent="MovingPlatform5" index="2"]
 playback_speed = 0.9
@@ -333,16 +336,19 @@ position = Vector2( 48, 352 )
 WALKING_DIRECTION = -1
 
 [node name="Brick" parent="." instance=ExtResource( 12 )]
-position = Vector2( 0, 64 )
+position = Vector2( 0, 80 )
 
 [node name="Brick2" parent="." instance=ExtResource( 12 )]
-position = Vector2( 16, 64 )
+position = Vector2( 16, 80 )
 
 [node name="Brick3" parent="." instance=ExtResource( 12 )]
-position = Vector2( 32, 64 )
+position = Vector2( 32, 80 )
 
 [node name="Brick4" parent="." instance=ExtResource( 12 )]
-position = Vector2( 48, 64 )
+position = Vector2( 48, 80 )
+
+[node name="MissilesPowerup" parent="." instance=ExtResource( 13 )]
+position = Vector2( 32, 64 )
 
 [editable path="Player"]
 [editable path="Player/Hurtbox"]
